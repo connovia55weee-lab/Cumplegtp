@@ -1,693 +1,954 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Invitación Especial | Cumpleaños & Bautizo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fuentes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Invitación Especial | Cumpleaños & Bautizo</title>
 
-  <style>
+<!-- FUENTES -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Montserrat', sans-serif;
+    color:#4b4337;
+    overflow-x:hidden;
+
+    background:
+    linear-gradient(rgba(255,252,247,0.92), rgba(255,248,240,0.94)),
+    url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=1600&auto=format&fit=crop');
+
+    background-size:cover;
+    background-attachment:fixed;
+    background-position:center;
+}
+
+/* FONDOS DECORATIVOS */
+
+.flower-left,
+.flower-right{
+    position:fixed;
+    width:260px;
+    z-index:-1;
+    opacity:0.14;
+    pointer-events:none;
+}
+
+.flower-left{
+    left:-50px;
+    top:120px;
+    animation:floatLeft 8s ease-in-out infinite alternate;
+}
+
+.flower-right{
+    right:-50px;
+    bottom:70px;
+    animation:floatRight 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatLeft{
+    from{
+        transform:translateY(0px) rotate(-8deg);
+    }
+    to{
+        transform:translateY(25px) rotate(4deg);
+    }
+}
+
+@keyframes floatRight{
+    from{
+        transform:translateY(0px) rotate(8deg);
+    }
+    to{
+        transform:translateY(-25px) rotate(-4deg);
+    }
+}
+
+/* SPIDERMAN */
+
+.spiderman{
+    position:fixed;
+    top:20px;
+    right:25px;
+    width:170px;
+    opacity:0.12;
+    z-index:-1;
+    animation:swing 5s ease-in-out infinite;
+}
+
+@keyframes swing{
+    0%{
+        transform:rotate(-6deg) translateY(0px);
     }
 
-    html{
-      scroll-behavior:smooth;
+    50%{
+        transform:rotate(6deg) translateY(18px);
     }
 
-    body{
-      font-family:'Montserrat', sans-serif;
-      background:
-      radial-gradient(circle at top right, rgba(212,175,55,0.12), transparent 30%),
-      linear-gradient(180deg,#fffdf8,#f8f1e7,#fffdf9);
-      color:#4b4337;
-      overflow-x:hidden;
+    100%{
+        transform:rotate(-6deg) translateY(0px);
+    }
+}
+
+/* PARTÍCULAS */
+
+.particles{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:-1;
+    overflow:hidden;
+}
+
+.particles span{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:#d4af37;
+    border-radius:50%;
+    opacity:0.35;
+    animation:particles linear infinite;
+}
+
+@keyframes particles{
+
+    from{
+        transform:translateY(100vh) scale(0);
     }
 
-    .sparkle{
-      position:fixed;
-      width:500px;
-      height:500px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(212,175,55,0.15), transparent 70%);
-      top:-120px;
-      right:-120px;
-      z-index:-1;
-      animation:float 7s ease-in-out infinite alternate;
+    to{
+        transform:translateY(-10vh) scale(1);
     }
 
-    @keyframes float{
-      from{
-        transform:translateY(0px);
-      }
-      to{
-        transform:translateY(35px);
-      }
+}
+
+/* CONTENEDOR */
+
+.container{
+    width:90%;
+    max-width:1150px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero-content{
+    animation:fadeUp 1.5s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
     }
 
-    .container{
-      width:90%;
-      max-width:1150px;
-      margin:auto;
-      padding:40px 20px;
-    }
-
-    /* HERO */
-
-    .hero{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      position:relative;
-    }
-
-    .hero-content{
-      opacity:0;
-      transform:translateY(50px);
-      animation:fadeUp 1.5s ease forwards;
-    }
-
-    @keyframes fadeUp{
-      to{
+    to{
         opacity:1;
         transform:translateY(0);
-      }
+    }
+}
+
+.hero-mini{
+    letter-spacing:5px;
+    color:#b48a3c;
+    font-size:0.9rem;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-family:'Great Vibes', cursive;
+    font-size:7rem;
+    color:#b48a3c;
+    line-height:1;
+    text-shadow:0 8px 25px rgba(180,138,60,0.18);
+}
+
+.hero h2{
+    font-family:'Cormorant Garamond', serif;
+    font-size:2.3rem;
+    font-weight:400;
+    color:#6d5d47;
+    margin-top:10px;
+}
+
+.divider{
+    width:140px;
+    height:2px;
+    background:linear-gradient(to right, transparent, #d4af37, transparent);
+    margin:35px auto;
+}
+
+.hero p{
+    max-width:760px;
+    margin:auto;
+    line-height:2;
+    color:#665d52;
+    font-size:1.05rem;
+}
+
+/* TITULOS */
+
+.section{
+    padding:90px 0;
+    text-align:center;
+}
+
+.section-title{
+    font-family:'Great Vibes', cursive;
+    font-size:4.5rem;
+    color:#b48a3c;
+    margin-bottom:15px;
+    text-shadow:0 5px 18px rgba(180,138,60,0.15);
+}
+
+.section-subtitle{
+    max-width:700px;
+    margin:auto;
+    color:#6b6257;
+    line-height:1.9;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:35px;
+    margin-top:50px;
+}
+
+/* CARDS */
+
+.card{
+    background:rgba(255,255,255,0.60);
+    backdrop-filter:blur(16px);
+
+    border:1px solid rgba(212,175,55,0.22);
+
+    border-radius:30px;
+
+    padding:40px;
+
+    position:relative;
+    overflow:hidden;
+
+    transition:0.45s ease;
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,0.05),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:-100%;
+    left:-100%;
+    width:220%;
+    height:220%;
+    background:radial-gradient(circle, rgba(255,255,255,0.2), transparent 60%);
+    animation:shine 9s linear infinite;
+}
+
+@keyframes shine{
+
+    from{
+        transform:rotate(0deg);
     }
 
-    .mini-title{
-      letter-spacing:5px;
-      color:#b48a3c;
-      margin-bottom:20px;
-      font-size:0.9rem;
+    to{
+        transform:rotate(360deg);
     }
+
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.02);
+    box-shadow:0 20px 45px rgba(180,138,60,0.15);
+}
+
+.card h3{
+    font-family:'Cormorant Garamond', serif;
+    font-size:2.2rem;
+    color:#b48a3c;
+    margin-bottom:20px;
+}
+
+.card p{
+    line-height:2;
+    color:#5d5549;
+}
+
+.highlight{
+    color:#b48a3c;
+    font-weight:600;
+}
+
+/* CUENTA REGRESIVA */
+
+.countdown{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:25px;
+    margin-top:45px;
+}
+
+.count-box{
+    width:135px;
+    height:135px;
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.65);
+
+    backdrop-filter:blur(12px);
+
+    border:2px solid rgba(212,175,55,0.25);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        box-shadow:0 0 0 rgba(212,175,55,0.1);
+    }
+
+    50%{
+        box-shadow:0 0 30px rgba(212,175,55,0.18);
+    }
+
+    100%{
+        box-shadow:0 0 0 rgba(212,175,55,0.1);
+    }
+
+}
+
+.count-box span{
+    font-size:2.3rem;
+    color:#b48a3c;
+    font-weight:600;
+}
+
+.count-box small{
+    margin-top:5px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-size:0.8rem;
+    color:#6d6458;
+}
+
+/* RSVP */
+
+.rsvp{
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(18px);
+
+    border-radius:35px;
+
+    padding:70px 40px;
+
+    border:1px solid rgba(212,175,55,0.18);
+
+    box-shadow:0 12px 35px rgba(0,0,0,0.05);
+}
+
+form{
+    max-width:700px;
+    margin:auto;
+    margin-top:40px;
+
+    display:grid;
+    gap:20px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:18px 22px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#fff;
+
+    border:1px solid rgba(180,138,60,0.15);
+
+    outline:none;
+
+    font-family:'Montserrat', sans-serif;
+
+    transition:0.3s;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#d4af37;
+    box-shadow:0 0 0 4px rgba(212,175,55,0.12);
+}
+
+textarea{
+    resize:none;
+    min-height:140px;
+}
+
+button{
+    border:none;
+
+    padding:18px;
+
+    border-radius:50px;
+
+    background:linear-gradient(135deg,#d4af37,#b48a3c);
+
+    color:white;
+
+    font-size:1rem;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:0.4s ease;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+button::before{
+    content:"";
+    position:absolute;
+    width:120%;
+    height:100%;
+    top:0;
+    left:-130%;
+    background:rgba(255,255,255,0.25);
+    transform:skewX(-20deg);
+    transition:0.7s;
+}
+
+button:hover::before{
+    left:130%;
+}
+
+button:hover{
+    transform:translateY(-4px);
+}
+
+/* NOTA */
+
+.fun-note{
+    margin-top:30px;
+    font-style:italic;
+    color:#987d48;
+}
+
+/* FOOTER */
+
+footer{
+    padding:60px 20px 40px;
+    text-align:center;
+    line-height:2;
+    color:#867a69;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
 
     .hero h1{
-      font-family:'Cormorant Garamond', serif;
-      font-size:5.5rem;
-      line-height:1;
-      color:#b48a3c;
-      margin-bottom:15px;
-      font-weight:700;
+        font-size:4.5rem;
     }
 
     .hero h2{
-      font-family:'Cormorant Garamond', serif;
-      font-size:2.2rem;
-      font-weight:400;
-      color:#6f614f;
-      margin-bottom:30px;
-    }
-
-    .hero p{
-      max-width:750px;
-      margin:auto;
-      line-height:2;
-      color:#665e54;
-      font-size:1.05rem;
-    }
-
-    .divider{
-      width:150px;
-      height:2px;
-      background:linear-gradient(to right, transparent, #d4af37, transparent);
-      margin:35px auto;
-    }
-
-    .ornament{
-      font-size:2rem;
-      color:#d4af37;
-      margin-bottom:20px;
-    }
-
-    /* SECTIONS */
-
-    .section{
-      padding:90px 0;
-      text-align:center;
+        font-size:1.6rem;
     }
 
     .section-title{
-      font-family:'Cormorant Garamond', serif;
-      font-size:3.5rem;
-      color:#b48a3c;
-      margin-bottom:20px;
+        font-size:3.3rem;
     }
 
-    .section-subtitle{
-      max-width:700px;
-      margin:auto;
-      color:#6b6256;
-      line-height:1.9;
+    .flower-left,
+    .flower-right{
+        width:170px;
     }
 
-    /* CARDS */
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:35px;
-      margin-top:55px;
-    }
-
-    .card{
-      background:rgba(255,255,255,0.72);
-      backdrop-filter:blur(12px);
-      border:1px solid rgba(212,175,55,0.22);
-      border-radius:28px;
-      padding:40px;
-      box-shadow:0 10px 35px rgba(0,0,0,0.05);
-      transition:0.45s ease;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .card::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:-100%;
-      width:100%;
-      height:100%;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-      transition:0.8s;
-    }
-
-    .card:hover::before{
-      left:100%;
-    }
-
-    .card:hover{
-      transform:translateY(-10px);
-      box-shadow:0 20px 40px rgba(180,138,60,0.14);
-    }
-
-    .card h3{
-      font-family:'Cormorant Garamond', serif;
-      font-size:2.2rem;
-      color:#b48a3c;
-      margin-bottom:18px;
-    }
-
-    .card p{
-      line-height:2;
-      color:#5d554a;
-    }
-
-    .highlight{
-      color:#b48a3c;
-      font-weight:500;
-    }
-
-    /* COUNTDOWN */
-
-    .countdown{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:25px;
-      margin-top:50px;
+    .spiderman{
+        width:110px;
+        opacity:0.08;
     }
 
     .count-box{
-      width:135px;
-      height:135px;
-      border-radius:50%;
-      border:2px solid rgba(212,175,55,0.35);
-      background:rgba(255,255,255,0.7);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      box-shadow:0 10px 25px rgba(0,0,0,0.04);
+        width:110px;
+        height:110px;
     }
 
-    .count-box span{
-      font-size:2.3rem;
-      color:#b48a3c;
-      font-weight:600;
-    }
+}
 
-    .count-box small{
-      margin-top:5px;
-      text-transform:uppercase;
-      letter-spacing:2px;
-      color:#6a6156;
-      font-size:0.8rem;
-    }
-
-    /* RSVP */
-
-    .rsvp{
-      background:linear-gradient(180deg,#fff,#faf3e8);
-      border-radius:35px;
-      padding:70px 40px;
-      border:1px solid rgba(212,175,55,0.18);
-      box-shadow:0 10px 35px rgba(0,0,0,0.05);
-    }
-
-    form{
-      max-width:700px;
-      margin:auto;
-      margin-top:45px;
-      display:grid;
-      gap:20px;
-    }
-
-    input,
-    textarea{
-      width:100%;
-      padding:18px 22px;
-      border:none;
-      border-radius:16px;
-      background:#fff;
-      border:1px solid rgba(180,138,60,0.15);
-      font-family:'Montserrat', sans-serif;
-      color:#4b4337;
-      outline:none;
-      transition:0.3s;
-    }
-
-    input:focus,
-    textarea:focus{
-      border-color:#d4af37;
-      box-shadow:0 0 0 4px rgba(212,175,55,0.12);
-    }
-
-    textarea{
-      min-height:140px;
-      resize:none;
-    }
-
-    button{
-      border:none;
-      padding:18px;
-      border-radius:50px;
-      background:linear-gradient(135deg,#d4af37,#b48a3c);
-      color:white;
-      font-size:1rem;
-      letter-spacing:1px;
-      cursor:pointer;
-      transition:0.35s ease;
-      box-shadow:0 12px 24px rgba(180,138,60,0.22);
-    }
-
-    button:hover{
-      transform:translateY(-4px);
-      box-shadow:0 18px 32px rgba(180,138,60,0.3);
-    }
-
-    /* FOOTER */
-
-    footer{
-      padding:60px 20px 35px;
-      text-align:center;
-      color:#867b6b;
-      line-height:2;
-      font-size:0.95rem;
-    }
-
-    .fun-note{
-      margin-top:25px;
-      font-style:italic;
-      color:#9a7f4d;
-      font-size:0.95rem;
-    }
-
-    /* RESPONSIVE */
-
-    @media(max-width:768px){
-
-      .hero h1{
-        font-size:3.7rem;
-      }
-
-      .hero h2{
-        font-size:1.6rem;
-      }
-
-      .section-title{
-        font-size:2.6rem;
-      }
-
-      .count-box{
-        width:115px;
-        height:115px;
-      }
-
-      .card{
-        padding:30px;
-      }
-
-    }
-
-  </style>
+</style>
 </head>
 
 <body>
 
-  <div class="sparkle"></div>
+<!-- FLORES -->
+<img class="flower-left" src="https://pngimg.com/d/flowers_PNG102.png">
 
-  <!-- HERO -->
+<img class="flower-right" src="https://pngimg.com/d/flowers_PNG102.png">
 
-  <section class="hero container">
+<!-- SPIDERMAN -->
+<img class="spiderman" src="https://pngimg.com/d/spider_man_PNG94.png">
 
-    <div class="hero-content">
+<!-- PARTÍCULAS -->
+<div class="particles">
 
-      <div class="ornament">✦</div>
+<span style="left:10%; animation-duration:12s;"></span>
+<span style="left:20%; animation-duration:18s;"></span>
+<span style="left:35%; animation-duration:14s;"></span>
+<span style="left:50%; animation-duration:20s;"></span>
+<span style="left:65%; animation-duration:16s;"></span>
+<span style="left:80%; animation-duration:13s;"></span>
+<span style="left:90%; animation-duration:19s;"></span>
 
-      <div class="mini-title">INVITACIÓN ESPECIAL</div>
+</div>
 
-      <h1>Celebramos la Vida</h1>
+<!-- HERO -->
 
-      <h2>Cumpleaños & Bautizo</h2>
+<section class="hero container">
 
-      <div class="divider"></div>
+<div class="hero-content">
 
-      <p>
-        Con mucha alegría y amor queremos compartir contigo un día
-        lleno de bendiciones, sonrisas y momentos inolvidables.
-        Será un honor contar con tu presencia en esta celebración tan especial
-        para nuestra familia.
-      </p>
+<div class="hero-mini">
+INVITACIÓN ESPECIAL
+</div>
 
-    </div>
+<h1>Celebramos la Vida</h1>
 
-  </section>
+<h2>Cumpleaños & Bautizo</h2>
 
-  <!-- FESTEJADOS -->
+<div class="divider"></div>
 
-  <section class="section container">
+<p>
+Con mucha alegría queremos compartir contigo un día lleno de amor,
+bendiciones y momentos inolvidables.
+Será un honor contar con tu presencia en esta celebración tan especial para nuestra familia.
+</p>
 
-    <div class="ornament">✦</div>
+</div>
 
-    <h2 class="section-title">Nuestros Pequeños</h2>
+</section>
 
-    <p class="section-subtitle">
-      Dos celebraciones, un solo día lleno de felicidad, amor y bendiciones.
-    </p>
+<!-- FESTEJADOS -->
 
-    <div class="grid">
+<section class="section container">
 
-      <div class="card">
-        <h3>Cumpleaños</h3>
+<h2 class="section-title">Nuestros Pequeños</h2>
 
-        <p>
-          <span class="highlight">Neythan Velarde Polo</span><br><br>
+<p class="section-subtitle">
+Dos celebraciones, un solo día lleno de felicidad y bendiciones.
+</p>
 
-          Hijo de:<br>
-          Caroline Kembruly<br>
-          Miguel Escobar
-        </p>
-      </div>
+<div class="grid">
 
-      <div class="card">
-        <h3>Bautizo</h3>
+<div class="card">
 
-        <p>
-          <span class="highlight">Scarlett Alice Escobar Polo</span><br><br>
+<h3>Cumpleaños</h3>
 
-          Padres:<br>
-          Caroline Kembruly<br>
-          Miguel Escobar<br><br>
+<p>
 
-          Padrinos:<br>
-          Gorge Dominic<br>
-          Andrea Polo
-        </p>
-      </div>
+<span class="highlight">
+Neythan Velarde Polo
+</span>
 
-    </div>
+<br><br>
 
-  </section>
+Hijo de:<br>
 
-  <!-- DETALLES -->
+Caroline Kembruly<br>
+Miguel Escobar
 
-  <section class="section container">
+</p>
 
-    <div class="ornament">✦</div>
+</div>
 
-    <h2 class="section-title">Detalles del Evento</h2>
+<div class="card">
 
-    <div class="grid">
+<h3>Bautizo</h3>
 
-      <div class="card">
-        <h3>Misa de Bautizo</h3>
+<p>
 
-        <p>
-          20 de Junio<br>
-          11:00 AM<br><br>
+<span class="highlight">
+Scarlett Alice Escobar Polo
+</span>
 
-          Iglesia Cristo Rey<br>
-          Valle del Sol
-        </p>
-      </div>
+<br><br>
 
-      <div class="card">
-        <h3>Recepción & Compartir</h3>
+Padres:<br>
 
-        <p>
-          20 de Junio<br>
-          4:00 PM<br><br>
+Caroline Kembruly<br>
+Miguel Escobar
 
-          Salón Galaxia La Calera<br>
-          Calle Capricornio N° 23
-        </p>
-      </div>
+<br><br>
 
-      <div class="card">
-        <h3>Contacto</h3>
+Padrinos:<br>
 
-        <p>
-          Confirmar asistencia al:<br><br>
+Gorge Dominic<br>
+Andrea Polo
 
-          <span class="highlight">
-            2215720121
-          </span>
-        </p>
-      </div>
+</p>
 
-    </div>
+</div>
 
-  </section>
+</div>
 
-  <!-- REGALOS -->
+</section>
 
-  <section class="section container">
+<!-- DETALLES -->
 
-    <div class="ornament">✦</div>
+<section class="section container">
 
-    <h2 class="section-title">Sugerencia de Obsequios</h2>
+<h2 class="section-title">
+Detalles del Evento
+</h2>
 
-    <div class="grid">
+<div class="grid">
 
-      <div class="card">
-        <h3>Para el Bautizo</h3>
+<div class="card">
 
-        <p>
-          Si tu obsequio es ropa para Scarlett,
-          agradeceríamos que sea talla
-          <span class="highlight">9 meses a 1 año</span>.
-        </p>
-      </div>
+<h3>Misa de Bautizo</h3>
 
-      <div class="card">
-        <h3>Para el Cumpleaños</h3>
+<p>
 
-        <p>
-          Si tu obsequio es ropa para Neythan,
-          agradeceríamos que sea talla
-          <span class="highlight">4 a 5 años</span>.
-        </p>
-      </div>
+20 de Junio<br>
+11:00 AM
 
-    </div>
+<br><br>
 
-  </section>
+Valle del Sol<br>
+Iglesia Cristo Rey
 
-  <!-- COUNTDOWN -->
+</p>
 
-  <section class="section container">
+</div>
 
-    <div class="ornament">✦</div>
+<div class="card">
 
-    <h2 class="section-title">Cuenta Regresiva</h2>
+<h3>Compartir</h3>
 
-    <div class="countdown">
+<p>
 
-      <div class="count-box">
-        <span id="days">00</span>
-        <small>Días</small>
-      </div>
+20 de Junio<br>
+4:00 PM
 
-      <div class="count-box">
-        <span id="hours">00</span>
-        <small>Horas</small>
-      </div>
+<br><br>
 
-      <div class="count-box">
-        <span id="minutes">00</span>
-        <small>Minutos</small>
-      </div>
+Salón Galaxia La Calera<br>
+Calle Capricornio N° 23
 
-      <div class="count-box">
-        <span id="seconds">00</span>
-        <small>Segundos</small>
-      </div>
+</p>
 
-    </div>
+</div>
 
-  </section>
+<div class="card">
 
-  <!-- RSVP -->
+<h3>Contacto</h3>
 
-  <section class="section container">
+<p>
 
-    <div class="rsvp">
+Confirmar asistencia al:
 
-      <div class="ornament">✦</div>
+<br><br>
 
-      <h2 class="section-title">Confirmación de Asistencia</h2>
+<span class="highlight">
+2215720121
+</span>
 
-      <p class="section-subtitle">
-        Tu presencia hará este día aún más especial.
-        Esperamos compartir contigo este hermoso momento.
-      </p>
+</p>
 
-      <form id="rsvpForm">
+</div>
 
-        <input type="text" placeholder="Nombre completo" required>
+</div>
 
-        <input type="email" placeholder="Correo electrónico" required>
+</section>
 
-        <textarea placeholder="Déjanos un mensaje especial..."></textarea>
+<!-- REGALOS -->
 
-        <button type="submit">
-          Confirmar Asistencia
-        </button>
+<section class="section container">
 
-      </form>
+<h2 class="section-title">
+Sugerencia de Obsequios
+</h2>
 
-      <div class="fun-note">
-        Pdta: “Traer obsequio obligatorio, pedazo eh kk”. 😂✨
-      </div>
+<div class="grid">
 
-    </div>
+<div class="card">
 
-  </section>
+<h3>Para Scarlett</h3>
 
-  <!-- FOOTER -->
+<p>
 
-  <footer>
-    Gracias por ser parte de nuestra historia ❤️<br>
-    Te esperamos para celebrar juntos este día inolvidable.
-  </footer>
+Si tu obsequio es ropa para el bautizo,
+agradeceríamos que sea talla:
 
-  <script>
+<br><br>
 
-    // Animación de aparición
-    const cards = document.querySelectorAll('.card');
+<span class="highlight">
+9 meses a 1 año
+</span>
 
-    const observer = new IntersectionObserver(entries => {
+</p>
 
-      entries.forEach(entry => {
+</div>
 
-        if(entry.isIntersecting){
+<div class="card">
 
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0px)";
-        }
+<h3>Para Neythan</h3>
 
-      });
+<p>
 
-    }, { threshold:0.1 });
+Si tu obsequio es ropa para el cumpleaños,
+agradeceríamos que sea talla:
 
-    cards.forEach(card => {
+<br><br>
 
-      card.style.opacity = "0";
-      card.style.transform = "translateY(40px)";
-      card.style.transition = "0.9s ease";
+<span class="highlight">
+4 a 5 años
+</span>
 
-      observer.observe(card);
+</p>
 
-    });
+</div>
 
-    // Cuenta regresiva
+</div>
 
-    const eventDate = new Date("June 20, 2026 11:00:00").getTime();
+</section>
 
-    const countdown = setInterval(() => {
+<!-- CUENTA REGRESIVA -->
 
-      const now = new Date().getTime();
+<section class="section container">
 
-      const distance = eventDate - now;
+<h2 class="section-title">
+Cuenta Regresiva
+</h2>
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+<div class="countdown">
 
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) /
-        (1000 * 60 * 60)
-      );
+<div class="count-box">
+<span id="days">00</span>
+<small>Días</small>
+</div>
 
-      const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) /
-        (1000 * 60)
-      );
+<div class="count-box">
+<span id="hours">00</span>
+<small>Horas</small>
+</div>
 
-      const seconds = Math.floor(
-        (distance % (1000 * 60)) / 1000
-      );
+<div class="count-box">
+<span id="minutes">00</span>
+<small>Minutos</small>
+</div>
 
-      document.getElementById("days").innerHTML = days;
-      document.getElementById("hours").innerHTML = hours;
-      document.getElementById("minutes").innerHTML = minutes;
-      document.getElementById("seconds").innerHTML = seconds;
+<div class="count-box">
+<span id="seconds">00</span>
+<small>Segundos</small>
+</div>
 
-      if(distance < 0){
+</div>
 
-        clearInterval(countdown);
+</section>
 
-        document.getElementById("days").innerHTML = "00";
-        document.getElementById("hours").innerHTML = "00";
-        document.getElementById("minutes").innerHTML = "00";
-        document.getElementById("seconds").innerHTML = "00";
+<!-- RSVP -->
 
-      }
+<section class="section container">
 
-    }, 1000);
+<div class="rsvp">
 
-    // Confirmación visual
+<h2 class="section-title">
+Confirmación de Asistencia
+</h2>
 
-    const form = document.getElementById("rsvpForm");
+<p class="section-subtitle">
 
-    form.addEventListener("submit", function(e){
+Tu presencia hará este día aún más especial.
+Esperamos compartir contigo este hermoso momento.
 
-      e.preventDefault();
+</p>
 
-      const button = form.querySelector("button");
+<form id="rsvpForm">
 
-      button.innerHTML = "¡Asistencia Confirmada!";
-      button.style.background = "#b48a3c";
+<input type="text" placeholder="Nombre completo" required>
 
-      setTimeout(() => {
+<input type="email" placeholder="Correo electrónico" required>
 
-        form.reset();
+<textarea placeholder="Déjanos un mensaje especial..."></textarea>
 
-        button.innerHTML = "Confirmar Asistencia";
+<button type="submit">
+Confirmar Asistencia
+</button>
 
-      }, 3000);
+</form>
 
-    });
+<div class="fun-note">
+Pdta: “Traer obsequio obligatorio, pedazo eh kk”. 😂✨
+</div>
 
-  </script>
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+Gracias por ser parte de nuestra historia ❤️
+<br>
+Te esperamos para celebrar juntos este día inolvidable.
+
+</footer>
+
+<!-- MÚSICA -->
+<audio id="bgMusic" autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4d6f9dbb4f.mp3?filename=wedding-piano-110624.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* MÚSICA */
+
+const music = document.getElementById("bgMusic");
+
+document.addEventListener("click", () => {
+
+    music.play();
+
+}, { once:true });
+
+/* CUENTA REGRESIVA */
+
+const eventDate = new Date("June 20, 2026 11:00:00").getTime();
+
+const countdown = setInterval(() => {
+
+const now = new Date().getTime();
+
+const distance = eventDate - now;
+
+const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+const hours = Math.floor(
+(distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+);
+
+const minutes = Math.floor(
+(distance % (1000 * 60 * 60)) / (1000 * 60)
+);
+
+const seconds = Math.floor(
+(distance % (1000 * 60)) / 1000
+);
+
+document.getElementById("days").innerHTML = days;
+document.getElementById("hours").innerHTML = hours;
+document.getElementById("minutes").innerHTML = minutes;
+document.getElementById("seconds").innerHTML = seconds;
+
+if(distance < 0){
+
+clearInterval(countdown);
+
+document.getElementById("days").innerHTML = "00";
+document.getElementById("hours").innerHTML = "00";
+document.getElementById("minutes").innerHTML = "00";
+document.getElementById("seconds").innerHTML = "00";
+
+}
+
+}, 1000);
+
+/* CONFIRMACIÓN */
+
+const form = document.getElementById("rsvpForm");
+
+form.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const button = form.querySelector("button");
+
+button.innerHTML = "¡Asistencia Confirmada!";
+
+setTimeout(() => {
+
+form.reset();
+
+button.innerHTML = "Confirmar Asistencia";
+
+}, 3000);
+
+});
+
+/* ANIMACIÓN SCROLL */
+
+const cards = document.querySelectorAll(".card");
+
+const observer = new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity = "1";
+entry.target.style.transform = "translateY(0px)";
+
+}
+
+});
+
+}, { threshold:0.1 });
+
+cards.forEach(card => {
+
+card.style.opacity = "0";
+card.style.transform = "translateY(40px)";
+card.style.transition = "0.9s ease";
+
+observer.observe(card);
+
+});
+
+</script>
 
 </body>
-              </html>
+</html>
