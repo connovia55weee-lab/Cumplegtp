@@ -1,438 +1,454 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Invitación | Cumpleaños & Bautizo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación - Bautizo y Cumpleaños</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FDFBF7;
+            --white: #FFFFFF;
+            --gold: #C5A059;
+            --gold-light: #E2C78E;
+            --dark-gray: #4A4A4A;
+            --light-gray: #888888;
+        }
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    body{
-      font-family:'Montserrat', sans-serif;
-      background:linear-gradient(180deg,#fffdf8,#f8f2e9);
-      color:#4b4337;
-      overflow-x:hidden;
-    }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
 
-    .background-glow{
-      position:fixed;
-      width:600px;
-      height:600px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(212,175,55,0.12), transparent 70%);
-      top:-150px;
-      right:-150px;
-      z-index:-1;
-      animation:float 8s ease-in-out infinite alternate;
-    }
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+            color: var(--gold);
+            font-size: 3.5rem;
+            margin: 10px 0;
+            line-height: 1;
+        }
 
-    @keyframes float{
-      from{ transform:translateY(0px); }
-      to{ transform:translateY(30px); }
-    }
+        /* Contenedor Principal */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .container{
-      width:90%;
-      max-width:1100px;
-      margin:auto;
-      padding:40px 20px;
-    }
+        /* Animaciones */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
 
-    .hero{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      opacity:0;
-      transform:translateY(40px);
-      animation:fadeUp 1.5s ease forwards;
-    }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    @keyframes fadeUp{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
+        /* Sección Hero / Bienvenida */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(253, 251, 247, 0.9), rgba(255, 255, 255, 0.5)), url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            border-bottom: 2px solid var(--gold-light);
+        }
 
-    .hero h1{
-      font-family:'Cormorant Garamond', serif;
-      font-size:5rem;
-      font-weight:600;
-      color:#b48a3c;
-      letter-spacing:2px;
-      margin-bottom:10px;
-    }
+        .hero h2 {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
 
-    .hero h2{
-      font-family:'Cormorant Garamond', serif;
-      font-size:2rem;
-      font-weight:400;
-      margin-bottom:25px;
-      color:#6e5d46;
-    }
+        .hero .subtitle {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 20px auto;
+            font-style: italic;
+            color: var(--dark-gray);
+        }
 
-    .hero p{
-      max-width:700px;
-      line-height:1.9;
-      font-size:1.05rem;
-      color:#6b6255;
-    }
+        /* Adornos */
+        .divider {
+            width: 80px;
+            height: 2px;
+            background-color: var(--gold);
+            margin: 30px auto;
+        }
 
-    .divider{
-      width:120px;
-      height:2px;
-      background:linear-gradient(to right, transparent, #d4af37, transparent);
-      margin:30px auto;
-    }
+        /* Contador Regresivo */
+        .countdown-section {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: var(--white);
+        }
 
-    .section{
-      padding:90px 0;
-      text-align:center;
-    }
+        .countdown-title {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
 
-    .section-title{
-      font-family:'Cormorant Garamond', serif;
-      font-size:3rem;
-      color:#b48a3c;
-      margin-bottom:20px;
-    }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-    .details-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:30px;
-      margin-top:50px;
-    }
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            height: 90px;
+            border: 1px solid var(--gold-light);
+            border-radius: 50%;
+            background-color: var(--cream);
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.1);
+        }
 
-    .card{
-      background:rgba(255,255,255,0.75);
-      backdrop-filter:blur(10px);
-      border:1px solid rgba(212,175,55,0.25);
-      border-radius:24px;
-      padding:35px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.05);
-      transition:0.4s ease;
-    }
+        .time-box span:first-child {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
 
-    .card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 18px 40px rgba(180,138,60,0.12);
-    }
+        .time-box span:last-child {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+        }
 
-    .card h3{
-      font-family:'Cormorant Garamond', serif;
-      font-size:2rem;
-      color:#b48a3c;
-      margin-bottom:15px;
-    }
+        /* Detalles del Evento */
+        .events-section {
+            padding: 80px 20px;
+        }
 
-    .card p{
-      line-height:1.8;
-      color:#5f574b;
-    }
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
 
-    .countdown{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:25px;
-      margin-top:40px;
-    }
+        .event-card {
+            background-color: var(--white);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 10px;
+            padding: 40px 30px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease;
+        }
 
-    .count-box{
-      width:130px;
-      height:130px;
-      border-radius:50%;
-      border:2px solid rgba(212,175,55,0.45);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      background:rgba(255,255,255,0.65);
-      box-shadow:0 8px 25px rgba(0,0,0,0.04);
-    }
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
 
-    .count-box span{
-      font-size:2rem;
-      font-weight:500;
-      color:#b48a3c;
-    }
+        .event-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
 
-    .count-box small{
-      margin-top:5px;
-      font-size:0.85rem;
-      letter-spacing:1px;
-      color:#6a6257;
-      text-transform:uppercase;
-    }
+        .event-card h3 {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    .rsvp{
-      background:linear-gradient(180deg,#fff,#faf4eb);
-      border-radius:30px;
-      padding:60px 40px;
-      border:1px solid rgba(212,175,55,0.2);
-      box-shadow:0 10px 30px rgba(0,0,0,0.05);
-    }
+        .event-detail {
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
 
-    form{
-      max-width:700px;
-      margin:auto;
-      margin-top:40px;
-      display:grid;
-      gap:20px;
-    }
+        .event-detail strong {
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
 
-    input, textarea{
-      width:100%;
-      padding:18px 20px;
-      border:none;
-      border-radius:14px;
-      background:#fff;
-      border:1px solid rgba(180,138,60,0.18);
-      font-family:'Montserrat', sans-serif;
-      color:#4b4337;
-      outline:none;
-      transition:0.3s;
-    }
+        /* Botón de Mapa */
+        .btn-map {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: transparent;
+            color: var(--gold);
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            border-radius: 25px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
 
-    input:focus,
-    textarea:focus{
-      border-color:#d4af37;
-      box-shadow:0 0 0 4px rgba(212,175,55,0.12);
-    }
+        .btn-map:hover {
+            background-color: var(--gold);
+            color: var(--white);
+        }
 
-    textarea{
-      resize:none;
-      min-height:140px;
-    }
+        /* Formulario RSVP */
+        .rsvp-section {
+            background-color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 2px solid var(--gold-light);
+        }
 
-    button{
-      background:linear-gradient(135deg,#d4af37,#b48a3c);
-      color:white;
-      border:none;
-      padding:18px;
-      border-radius:40px;
-      font-size:1rem;
-      letter-spacing:1px;
-      cursor:pointer;
-      transition:0.35s ease;
-      box-shadow:0 10px 20px rgba(180,138,60,0.25);
-    }
+        .rsvp-section h2 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
 
-    button:hover{
-      transform:translateY(-3px);
-      box-shadow:0 14px 28px rgba(180,138,60,0.35);
-    }
+        .rsvp-section p {
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
 
-    footer{
-      text-align:center;
-      padding:50px 20px 30px;
-      color:#8a7e6b;
-      font-size:0.9rem;
-    }
+        .rsvp-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-    .ornament{
-      font-size:2rem;
-      color:#d4af37;
-      margin-bottom:20px;
-    }
+        .rsvp-form input, .rsvp-form select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            background-color: var(--cream);
+            color: var(--dark-gray);
+            transition: border-color 0.3s;
+        }
 
-    @media(max-width:768px){
+        .rsvp-form input:focus, .rsvp-form select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
 
-      .hero h1{
-        font-size:3.2rem;
-      }
+        .btn-submit {
+            padding: 15px;
+            background-color: var(--gold);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
 
-      .hero h2{
-        font-size:1.5rem;
-      }
+        .btn-submit:hover {
+            background-color: #b38f4d;
+        }
 
-      .section-title{
-        font-size:2.4rem;
-      }
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            background-color: var(--cream);
+        }
 
-      .count-box{
-        width:110px;
-        height:110px;
-      }
-    }
-  </style>
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .cursive { font-size: 2.8rem; }
+            .hero { padding: 70px 20px; }
+            .cards-container { flex-direction: column; align-items: center; }
+            .event-card { width: 100%; }
+        }
+    </style>
 </head>
-
 <body>
 
-  <div class="background-glow"></div>
+    <header class="hero fade-in">
+        <div class="container">
+            <h2>Estás invitado a celebrar</h2>
+            <div class="divider"></div>
+            <p class="subtitle">Con gran alegría y la bendición de Dios, te invitamos a compartir con nosotros un día muy especial: el bautizo y el primer añito de nuestro amado hijo.</p>
+            <h1 class="cursive">[Nombre del Festejado]</h1>
+            <div class="divider"></div>
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">Sábado, 28 de Noviembre de 2026</p>
+        </div>
+    </header>
 
-  <section class="hero container">
-    <div class="ornament">✦</div>
+    <section class="countdown-section fade-in">
+        <div class="container">
+            <h3 class="countdown-title">Faltan</h3>
+            <div class="countdown" id="countdown">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <span>Días</span>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <span>Horas</span>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <span>Minutos</span>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <span>Segundos</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h1>Celebramos la Vida</h1>
+    <section class="events-section fade-in">
+        <div class="container cards-container">
+            
+            <div class="event-card">
+                <div class="event-icon">🕊️</div>
+                <h3>Ceremonia Religiosa</h3>
+                <div class="divider" style="width: 40px; margin: 15px auto;"></div>
+                <p class="event-detail"><strong>Hora:</strong> 11:00 AM</p>
+                <p class="event-detail"><strong>Lugar:</strong> Parroquia de San Juan Bautista</p>
+                <p class="event-detail">Av. Las Camelias 123, Ciudad</p>
+                <a href="#" class="btn-map">Ver en Mapa</a>
+            </div>
 
-    <h2>Cumpleaños & Bautizo</h2>
+            <div class="event-card">
+                <div class="event-icon">🎂</div>
+                <h3>Recepción y Cumpleaños</h3>
+                <div class="divider" style="width: 40px; margin: 15px auto;"></div>
+                <p class="event-detail"><strong>Hora:</strong> 1:00 PM</p>
+                <p class="event-detail"><strong>Lugar:</strong> Salón de Eventos "El Dorado"</p>
+                <p class="event-detail">Calle Los Pinos 456, Ciudad</p>
+                <a href="#" class="btn-map">Ver en Mapa</a>
+            </div>
 
-    <div class="divider"></div>
+        </div>
+    </section>
 
-    <p>
-      Con inmensa alegría queremos compartir contigo un día lleno de amor,
-      bendiciones y momentos inolvidables. Nos encantaría contar con tu presencia
-      para celebrar juntos este doble acontecimiento tan especial en nuestras vidas.
-    </p>
-  </section>
+    <section class="rsvp-section fade-in">
+        <div class="container">
+            <h2>Confirmación de Asistencia</h2>
+            <div class="divider"></div>
+            <p>Por favor, confírmanos tu presencia antes del 15 de Noviembre.</p>
+            
+            <form class="rsvp-form" id="rsvpForm">
+                <input type="text" id="name" placeholder="Nombre y Apellido" required>
+                <select id="attendance" required>
+                    <option value="" disabled selected>¿Asistirás al evento?</option>
+                    <option value="si">¡Sí, ahí estaré!</option>
+                    <option value="no">Lamentablemente no podré asistir</option>
+                </select>
+                <select id="guests">
+                    <option value="1">1 Persona</option>
+                    <option value="2">2 Personas</option>
+                    <option value="3">3 Personas</option>
+                </select>
+                <button type="submit" class="btn-submit">Confirmar</button>
+            </form>
+        </div>
+    </section>
 
-  <section class="section container">
-    <h2 class="section-title">Detalles del Evento</h2>
+    <footer>
+        <p>&copy; 2026 Celebración Especial. Todos los derechos reservados.</p>
+    </footer>
 
-    <div class="details-grid">
+    <script>
+        // 1. Animación de Aparición al hacer scroll (Intersection Observer)
+        document.addEventListener('DOMContentLoaded', () => {
+            const faders = document.querySelectorAll('.fade-in');
 
-      <div class="card">
-        <h3>Fecha</h3>
-        <p>
-          Sábado 28 de Junio del 2026<br>
-          4:00 PM
-        </p>
-      </div>
+            const appearOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
 
-      <div class="card">
-        <h3>Bautizo</h3>
-        <p>
-          Iglesia San Gabriel<br>
-          Av. Principal 245<br>
-          5:00 PM
-        </p>
-      </div>
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
 
-      <div class="card">
-        <h3>Recepción</h3>
-        <p>
-          Salón Doré Eventos<br>
-          Calle Los Jardines 118<br>
-          Desde las 7:00 PM
-        </p>
-      </div>
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
 
-    </div>
-  </section>
+            // Trigger animation for the first element immediately
+            setTimeout(() => {
+                document.querySelector('.hero').classList.add('visible');
+            }, 100);
+        });
 
-  <section class="section container">
-    <h2 class="section-title">Cuenta Regresiva</h2>
+        // 2. Contador Regresivo
+        // Configura la fecha del evento aquí (Año, Mes (0-11), Día, Hora, Minuto)
+        const eventDate = new Date("Nov 28, 2026 11:00:00").getTime();
 
-    <div class="countdown">
+        const countdownFunction = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
 
-      <div class="count-box">
-        <span id="days">00</span>
-        <small>Días</small>
-      </div>
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "<h3 style='color: var(--gold); font-family: Playfair Display;'>¡El gran día ha llegado!</h3>";
+                return;
+            }
 
-      <div class="count-box">
-        <span id="hours">00</span>
-        <small>Horas</small>
-      </div>
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      <div class="count-box">
-        <span id="minutes">00</span>
-        <small>Minutos</small>
-      </div>
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
 
-      <div class="count-box">
-        <span id="seconds">00</span>
-        <small>Segundos</small>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section container">
-    <div class="rsvp">
-
-      <div class="ornament">✦</div>
-
-      <h2 class="section-title">Confirmación de Asistencia</h2>
-
-      <p>
-        Tu presencia hará este momento aún más especial.
-        Por favor confirma tu asistencia.
-      </p>
-
-      <form id="rsvpForm">
-
-        <input type="text" placeholder="Nombre completo" required>
-
-        <input type="email" placeholder="Correo electrónico" required>
-
-        <textarea placeholder="Déjanos un mensaje especial..."></textarea>
-
-        <button type="submit">Confirmar Asistencia</button>
-
-      </form>
-
-    </div>
-  </section>
-
-  <footer>
-    Con cariño, esperamos compartir este día contigo ✨
-  </footer>
-
-  <script>
-    // Cuenta regresiva
-    const eventDate = new Date("June 28, 2026 16:00:00").getTime();
-
-    const countdown = setInterval(() => {
-
-      const now = new Date().getTime();
-      const distance = eventDate - now;
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days").innerHTML = days;
-      document.getElementById("hours").innerHTML = hours;
-      document.getElementById("minutes").innerHTML = minutes;
-      document.getElementById("seconds").innerHTML = seconds;
-
-      if(distance < 0){
-        clearInterval(countdown);
-
-        document.getElementById("days").innerHTML = "00";
-        document.getElementById("hours").innerHTML = "00";
-        document.getElementById("minutes").innerHTML = "00";
-        document.getElementById("seconds").innerHTML = "00";
-      }
-
-    }, 1000);
-
-
-    // Confirmación visual
-    const form = document.getElementById('rsvpForm');
-
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-
-      const button = form.querySelector('button');
-
-      button.innerHTML = "¡Asistencia Confirmada!";
-      button.style.background = "#b48a3c";
-
-      setTimeout(() => {
-        form.reset();
-        button.innerHTML = "Confirmar Asistencia";
-      }, 3000);
-    });
-  </script>
-
+        // 3. Manejo del Formulario (Simulación)
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const attendance = document.getElementById('attendance').value;
+            if(attendance === 'si') {
+                alert('¡Gracias por confirmar! Nos alegra mucho saber que nos acompañarás en este día tan especial.');
+            } else {
+                alert('Sentimos mucho que no puedas asistir. ¡Te extrañaremos!');
+            }
+            this.reset();
+        });
+    </script>
 </body>
 </html>
