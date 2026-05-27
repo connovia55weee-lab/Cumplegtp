@@ -1,454 +1,693 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación - Bautizo y Cumpleaños</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --cream: #FDFBF7;
-            --white: #FFFFFF;
-            --gold: #C5A059;
-            --gold-light: #E2C78E;
-            --dark-gray: #4A4A4A;
-            --light-gray: #888888;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invitación Especial | Cumpleaños & Bautizo</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--cream);
-            color: var(--dark-gray);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  <style>
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-        }
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-        .cursive {
-            font-family: 'Great Vibes', cursive;
-            color: var(--gold);
-            font-size: 3.5rem;
-            margin: 10px 0;
-            line-height: 1;
-        }
+    html{
+      scroll-behavior:smooth;
+    }
 
-        /* Contenedor Principal */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    body{
+      font-family:'Montserrat', sans-serif;
+      background:
+      radial-gradient(circle at top right, rgba(212,175,55,0.12), transparent 30%),
+      linear-gradient(180deg,#fffdf8,#f8f1e7,#fffdf9);
+      color:#4b4337;
+      overflow-x:hidden;
+    }
 
-        /* Animaciones */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-        }
+    .sparkle{
+      position:fixed;
+      width:500px;
+      height:500px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(212,175,55,0.15), transparent 70%);
+      top:-120px;
+      right:-120px;
+      z-index:-1;
+      animation:float 7s ease-in-out infinite alternate;
+    }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    @keyframes float{
+      from{
+        transform:translateY(0px);
+      }
+      to{
+        transform:translateY(35px);
+      }
+    }
 
-        /* Sección Hero / Bienvenida */
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, rgba(253, 251, 247, 0.9), rgba(255, 255, 255, 0.5)), url('https://www.transparenttextures.com/patterns/cream-paper.png');
-            border-bottom: 2px solid var(--gold-light);
-        }
+    .container{
+      width:90%;
+      max-width:1150px;
+      margin:auto;
+      padding:40px 20px;
+    }
 
-        .hero h2 {
-            font-size: 1.2rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--light-gray);
-            margin-bottom: 20px;
-        }
+    /* HERO */
 
-        .hero .subtitle {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 20px auto;
-            font-style: italic;
-            color: var(--dark-gray);
-        }
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      position:relative;
+    }
 
-        /* Adornos */
-        .divider {
-            width: 80px;
-            height: 2px;
-            background-color: var(--gold);
-            margin: 30px auto;
-        }
+    .hero-content{
+      opacity:0;
+      transform:translateY(50px);
+      animation:fadeUp 1.5s ease forwards;
+    }
 
-        /* Contador Regresivo */
-        .countdown-section {
-            text-align: center;
-            padding: 60px 20px;
-            background-color: var(--white);
-        }
+    @keyframes fadeUp{
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
 
-        .countdown-title {
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 30px;
-        }
+    .mini-title{
+      letter-spacing:5px;
+      color:#b48a3c;
+      margin-bottom:20px;
+      font-size:0.9rem;
+    }
 
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+    .hero h1{
+      font-family:'Cormorant Garamond', serif;
+      font-size:5.5rem;
+      line-height:1;
+      color:#b48a3c;
+      margin-bottom:15px;
+      font-weight:700;
+    }
 
-        .time-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 90px;
-            height: 90px;
-            border: 1px solid var(--gold-light);
-            border-radius: 50%;
-            background-color: var(--cream);
-            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.1);
-        }
+    .hero h2{
+      font-family:'Cormorant Garamond', serif;
+      font-size:2.2rem;
+      font-weight:400;
+      color:#6f614f;
+      margin-bottom:30px;
+    }
 
-        .time-box span:first-child {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--gold);
-        }
+    .hero p{
+      max-width:750px;
+      margin:auto;
+      line-height:2;
+      color:#665e54;
+      font-size:1.05rem;
+    }
 
-        .time-box span:last-child {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--light-gray);
-        }
+    .divider{
+      width:150px;
+      height:2px;
+      background:linear-gradient(to right, transparent, #d4af37, transparent);
+      margin:35px auto;
+    }
 
-        /* Detalles del Evento */
-        .events-section {
-            padding: 80px 20px;
-        }
+    .ornament{
+      font-size:2rem;
+      color:#d4af37;
+      margin-bottom:20px;
+    }
 
-        .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            justify-content: center;
-        }
+    /* SECTIONS */
 
-        .event-card {
-            background-color: var(--white);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            border-radius: 10px;
-            padding: 40px 30px;
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-            transition: transform 0.3s ease;
-        }
+    .section{
+      padding:90px 0;
+      text-align:center;
+    }
 
-        .event-card:hover {
-            transform: translateY(-5px);
-        }
+    .section-title{
+      font-family:'Cormorant Garamond', serif;
+      font-size:3.5rem;
+      color:#b48a3c;
+      margin-bottom:20px;
+    }
 
-        .event-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
+    .section-subtitle{
+      max-width:700px;
+      margin:auto;
+      color:#6b6256;
+      line-height:1.9;
+    }
 
-        .event-card h3 {
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+    /* CARDS */
 
-        .event-detail {
-            margin: 10px 0;
-            font-size: 0.95rem;
-        }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:35px;
+      margin-top:55px;
+    }
 
-        .event-detail strong {
-            font-weight: 600;
-            color: var(--dark-gray);
-        }
+    .card{
+      background:rgba(255,255,255,0.72);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(212,175,55,0.22);
+      border-radius:28px;
+      padding:40px;
+      box-shadow:0 10px 35px rgba(0,0,0,0.05);
+      transition:0.45s ease;
+      position:relative;
+      overflow:hidden;
+    }
 
-        /* Botón de Mapa */
-        .btn-map {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 25px;
-            background-color: transparent;
-            color: var(--gold);
-            text-decoration: none;
-            border: 1px solid var(--gold);
-            border-radius: 25px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
+    .card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      transition:0.8s;
+    }
 
-        .btn-map:hover {
-            background-color: var(--gold);
-            color: var(--white);
-        }
+    .card:hover::before{
+      left:100%;
+    }
 
-        /* Formulario RSVP */
-        .rsvp-section {
-            background-color: var(--white);
-            padding: 80px 20px;
-            text-align: center;
-            border-top: 2px solid var(--gold-light);
-        }
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 20px 40px rgba(180,138,60,0.14);
+    }
 
-        .rsvp-section h2 {
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
+    .card h3{
+      font-family:'Cormorant Garamond', serif;
+      font-size:2.2rem;
+      color:#b48a3c;
+      margin-bottom:18px;
+    }
 
-        .rsvp-section p {
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-        }
+    .card p{
+      line-height:2;
+      color:#5d554a;
+    }
 
-        .rsvp-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+    .highlight{
+      color:#b48a3c;
+      font-weight:500;
+    }
 
-        .rsvp-form input, .rsvp-form select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            background-color: var(--cream);
-            color: var(--dark-gray);
-            transition: border-color 0.3s;
-        }
+    /* COUNTDOWN */
 
-        .rsvp-form input:focus, .rsvp-form select:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
+    .countdown{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:25px;
+      margin-top:50px;
+    }
 
-        .btn-submit {
-            padding: 15px;
-            background-color: var(--gold);
-            color: var(--white);
-            border: none;
-            border-radius: 5px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
+    .count-box{
+      width:135px;
+      height:135px;
+      border-radius:50%;
+      border:2px solid rgba(212,175,55,0.35);
+      background:rgba(255,255,255,0.7);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      box-shadow:0 10px 25px rgba(0,0,0,0.04);
+    }
 
-        .btn-submit:hover {
-            background-color: #b38f4d;
-        }
+    .count-box span{
+      font-size:2.3rem;
+      color:#b48a3c;
+      font-weight:600;
+    }
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            font-size: 0.8rem;
-            color: var(--light-gray);
-            background-color: var(--cream);
-        }
+    .count-box small{
+      margin-top:5px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:#6a6156;
+      font-size:0.8rem;
+    }
 
-        /* Responsivo */
-        @media (max-width: 768px) {
-            .cursive { font-size: 2.8rem; }
-            .hero { padding: 70px 20px; }
-            .cards-container { flex-direction: column; align-items: center; }
-            .event-card { width: 100%; }
-        }
-    </style>
+    /* RSVP */
+
+    .rsvp{
+      background:linear-gradient(180deg,#fff,#faf3e8);
+      border-radius:35px;
+      padding:70px 40px;
+      border:1px solid rgba(212,175,55,0.18);
+      box-shadow:0 10px 35px rgba(0,0,0,0.05);
+    }
+
+    form{
+      max-width:700px;
+      margin:auto;
+      margin-top:45px;
+      display:grid;
+      gap:20px;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      padding:18px 22px;
+      border:none;
+      border-radius:16px;
+      background:#fff;
+      border:1px solid rgba(180,138,60,0.15);
+      font-family:'Montserrat', sans-serif;
+      color:#4b4337;
+      outline:none;
+      transition:0.3s;
+    }
+
+    input:focus,
+    textarea:focus{
+      border-color:#d4af37;
+      box-shadow:0 0 0 4px rgba(212,175,55,0.12);
+    }
+
+    textarea{
+      min-height:140px;
+      resize:none;
+    }
+
+    button{
+      border:none;
+      padding:18px;
+      border-radius:50px;
+      background:linear-gradient(135deg,#d4af37,#b48a3c);
+      color:white;
+      font-size:1rem;
+      letter-spacing:1px;
+      cursor:pointer;
+      transition:0.35s ease;
+      box-shadow:0 12px 24px rgba(180,138,60,0.22);
+    }
+
+    button:hover{
+      transform:translateY(-4px);
+      box-shadow:0 18px 32px rgba(180,138,60,0.3);
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:60px 20px 35px;
+      text-align:center;
+      color:#867b6b;
+      line-height:2;
+      font-size:0.95rem;
+    }
+
+    .fun-note{
+      margin-top:25px;
+      font-style:italic;
+      color:#9a7f4d;
+      font-size:0.95rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:3.7rem;
+      }
+
+      .hero h2{
+        font-size:1.6rem;
+      }
+
+      .section-title{
+        font-size:2.6rem;
+      }
+
+      .count-box{
+        width:115px;
+        height:115px;
+      }
+
+      .card{
+        padding:30px;
+      }
+
+    }
+
+  </style>
 </head>
+
 <body>
 
-    <header class="hero fade-in">
-        <div class="container">
-            <h2>Estás invitado a celebrar</h2>
-            <div class="divider"></div>
-            <p class="subtitle">Con gran alegría y la bendición de Dios, te invitamos a compartir con nosotros un día muy especial: el bautizo y el primer añito de nuestro amado hijo.</p>
-            <h1 class="cursive">[Nombre del Festejado]</h1>
-            <div class="divider"></div>
-            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">Sábado, 28 de Noviembre de 2026</p>
-        </div>
-    </header>
+  <div class="sparkle"></div>
 
-    <section class="countdown-section fade-in">
-        <div class="container">
-            <h3 class="countdown-title">Faltan</h3>
-            <div class="countdown" id="countdown">
-                <div class="time-box">
-                    <span id="days">00</span>
-                    <span>Días</span>
-                </div>
-                <div class="time-box">
-                    <span id="hours">00</span>
-                    <span>Horas</span>
-                </div>
-                <div class="time-box">
-                    <span id="minutes">00</span>
-                    <span>Minutos</span>
-                </div>
-                <div class="time-box">
-                    <span id="seconds">00</span>
-                    <span>Segundos</span>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- HERO -->
 
-    <section class="events-section fade-in">
-        <div class="container cards-container">
-            
-            <div class="event-card">
-                <div class="event-icon">🕊️</div>
-                <h3>Ceremonia Religiosa</h3>
-                <div class="divider" style="width: 40px; margin: 15px auto;"></div>
-                <p class="event-detail"><strong>Hora:</strong> 11:00 AM</p>
-                <p class="event-detail"><strong>Lugar:</strong> Parroquia de San Juan Bautista</p>
-                <p class="event-detail">Av. Las Camelias 123, Ciudad</p>
-                <a href="#" class="btn-map">Ver en Mapa</a>
-            </div>
+  <section class="hero container">
 
-            <div class="event-card">
-                <div class="event-icon">🎂</div>
-                <h3>Recepción y Cumpleaños</h3>
-                <div class="divider" style="width: 40px; margin: 15px auto;"></div>
-                <p class="event-detail"><strong>Hora:</strong> 1:00 PM</p>
-                <p class="event-detail"><strong>Lugar:</strong> Salón de Eventos "El Dorado"</p>
-                <p class="event-detail">Calle Los Pinos 456, Ciudad</p>
-                <a href="#" class="btn-map">Ver en Mapa</a>
-            </div>
+    <div class="hero-content">
 
-        </div>
-    </section>
+      <div class="ornament">✦</div>
 
-    <section class="rsvp-section fade-in">
-        <div class="container">
-            <h2>Confirmación de Asistencia</h2>
-            <div class="divider"></div>
-            <p>Por favor, confírmanos tu presencia antes del 15 de Noviembre.</p>
-            
-            <form class="rsvp-form" id="rsvpForm">
-                <input type="text" id="name" placeholder="Nombre y Apellido" required>
-                <select id="attendance" required>
-                    <option value="" disabled selected>¿Asistirás al evento?</option>
-                    <option value="si">¡Sí, ahí estaré!</option>
-                    <option value="no">Lamentablemente no podré asistir</option>
-                </select>
-                <select id="guests">
-                    <option value="1">1 Persona</option>
-                    <option value="2">2 Personas</option>
-                    <option value="3">3 Personas</option>
-                </select>
-                <button type="submit" class="btn-submit">Confirmar</button>
-            </form>
-        </div>
-    </section>
+      <div class="mini-title">INVITACIÓN ESPECIAL</div>
 
-    <footer>
-        <p>&copy; 2026 Celebración Especial. Todos los derechos reservados.</p>
-    </footer>
+      <h1>Celebramos la Vida</h1>
 
-    <script>
-        // 1. Animación de Aparición al hacer scroll (Intersection Observer)
-        document.addEventListener('DOMContentLoaded', () => {
-            const faders = document.querySelectorAll('.fade-in');
+      <h2>Cumpleaños & Bautizo</h2>
 
-            const appearOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
+      <div class="divider"></div>
 
-            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, appearOptions);
+      <p>
+        Con mucha alegría y amor queremos compartir contigo un día
+        lleno de bendiciones, sonrisas y momentos inolvidables.
+        Será un honor contar con tu presencia en esta celebración tan especial
+        para nuestra familia.
+      </p>
 
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
+    </div>
 
-            // Trigger animation for the first element immediately
-            setTimeout(() => {
-                document.querySelector('.hero').classList.add('visible');
-            }, 100);
-        });
+  </section>
 
-        // 2. Contador Regresivo
-        // Configura la fecha del evento aquí (Año, Mes (0-11), Día, Hora, Minuto)
-        const eventDate = new Date("Nov 28, 2026 11:00:00").getTime();
+  <!-- FESTEJADOS -->
 
-        const countdownFunction = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = eventDate - now;
+  <section class="section container">
 
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById("countdown").innerHTML = "<h3 style='color: var(--gold); font-family: Playfair Display;'>¡El gran día ha llegado!</h3>";
-                return;
-            }
+    <div class="ornament">✦</div>
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    <h2 class="section-title">Nuestros Pequeños</h2>
 
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-        }, 1000);
+    <p class="section-subtitle">
+      Dos celebraciones, un solo día lleno de felicidad, amor y bendiciones.
+    </p>
 
-        // 3. Manejo del Formulario (Simulación)
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const attendance = document.getElementById('attendance').value;
-            if(attendance === 'si') {
-                alert('¡Gracias por confirmar! Nos alegra mucho saber que nos acompañarás en este día tan especial.');
-            } else {
-                alert('Sentimos mucho que no puedas asistir. ¡Te extrañaremos!');
-            }
-            this.reset();
-        });
-    </script>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Cumpleaños</h3>
+
+        <p>
+          <span class="highlight">Neythan Velarde Polo</span><br><br>
+
+          Hijo de:<br>
+          Caroline Kembruly<br>
+          Miguel Escobar
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Bautizo</h3>
+
+        <p>
+          <span class="highlight">Scarlett Alice Escobar Polo</span><br><br>
+
+          Padres:<br>
+          Caroline Kembruly<br>
+          Miguel Escobar<br><br>
+
+          Padrinos:<br>
+          Gorge Dominic<br>
+          Andrea Polo
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- DETALLES -->
+
+  <section class="section container">
+
+    <div class="ornament">✦</div>
+
+    <h2 class="section-title">Detalles del Evento</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Misa de Bautizo</h3>
+
+        <p>
+          20 de Junio<br>
+          11:00 AM<br><br>
+
+          Iglesia Cristo Rey<br>
+          Valle del Sol
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Recepción & Compartir</h3>
+
+        <p>
+          20 de Junio<br>
+          4:00 PM<br><br>
+
+          Salón Galaxia La Calera<br>
+          Calle Capricornio N° 23
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Contacto</h3>
+
+        <p>
+          Confirmar asistencia al:<br><br>
+
+          <span class="highlight">
+            2215720121
+          </span>
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- REGALOS -->
+
+  <section class="section container">
+
+    <div class="ornament">✦</div>
+
+    <h2 class="section-title">Sugerencia de Obsequios</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Para el Bautizo</h3>
+
+        <p>
+          Si tu obsequio es ropa para Scarlett,
+          agradeceríamos que sea talla
+          <span class="highlight">9 meses a 1 año</span>.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Para el Cumpleaños</h3>
+
+        <p>
+          Si tu obsequio es ropa para Neythan,
+          agradeceríamos que sea talla
+          <span class="highlight">4 a 5 años</span>.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- COUNTDOWN -->
+
+  <section class="section container">
+
+    <div class="ornament">✦</div>
+
+    <h2 class="section-title">Cuenta Regresiva</h2>
+
+    <div class="countdown">
+
+      <div class="count-box">
+        <span id="days">00</span>
+        <small>Días</small>
+      </div>
+
+      <div class="count-box">
+        <span id="hours">00</span>
+        <small>Horas</small>
+      </div>
+
+      <div class="count-box">
+        <span id="minutes">00</span>
+        <small>Minutos</small>
+      </div>
+
+      <div class="count-box">
+        <span id="seconds">00</span>
+        <small>Segundos</small>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- RSVP -->
+
+  <section class="section container">
+
+    <div class="rsvp">
+
+      <div class="ornament">✦</div>
+
+      <h2 class="section-title">Confirmación de Asistencia</h2>
+
+      <p class="section-subtitle">
+        Tu presencia hará este día aún más especial.
+        Esperamos compartir contigo este hermoso momento.
+      </p>
+
+      <form id="rsvpForm">
+
+        <input type="text" placeholder="Nombre completo" required>
+
+        <input type="email" placeholder="Correo electrónico" required>
+
+        <textarea placeholder="Déjanos un mensaje especial..."></textarea>
+
+        <button type="submit">
+          Confirmar Asistencia
+        </button>
+
+      </form>
+
+      <div class="fun-note">
+        Pdta: “Traer obsequio obligatorio, pedazo eh kk”. 😂✨
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    Gracias por ser parte de nuestra historia ❤️<br>
+    Te esperamos para celebrar juntos este día inolvidable.
+  </footer>
+
+  <script>
+
+    // Animación de aparición
+    const cards = document.querySelectorAll('.card');
+
+    const observer = new IntersectionObserver(entries => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0px)";
+        }
+
+      });
+
+    }, { threshold:0.1 });
+
+    cards.forEach(card => {
+
+      card.style.opacity = "0";
+      card.style.transform = "translateY(40px)";
+      card.style.transition = "0.9s ease";
+
+      observer.observe(card);
+
+    });
+
+    // Cuenta regresiva
+
+    const eventDate = new Date("June 20, 2026 11:00:00").getTime();
+
+    const countdown = setInterval(() => {
+
+      const now = new Date().getTime();
+
+      const distance = eventDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+      );
+
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+      );
+
+      const seconds = Math.floor(
+        (distance % (1000 * 60)) / 1000
+      );
+
+      document.getElementById("days").innerHTML = days;
+      document.getElementById("hours").innerHTML = hours;
+      document.getElementById("minutes").innerHTML = minutes;
+      document.getElementById("seconds").innerHTML = seconds;
+
+      if(distance < 0){
+
+        clearInterval(countdown);
+
+        document.getElementById("days").innerHTML = "00";
+        document.getElementById("hours").innerHTML = "00";
+        document.getElementById("minutes").innerHTML = "00";
+        document.getElementById("seconds").innerHTML = "00";
+
+      }
+
+    }, 1000);
+
+    // Confirmación visual
+
+    const form = document.getElementById("rsvpForm");
+
+    form.addEventListener("submit", function(e){
+
+      e.preventDefault();
+
+      const button = form.querySelector("button");
+
+      button.innerHTML = "¡Asistencia Confirmada!";
+      button.style.background = "#b48a3c";
+
+      setTimeout(() => {
+
+        form.reset();
+
+        button.innerHTML = "Confirmar Asistencia";
+
+      }, 3000);
+
+    });
+
+  </script>
+
 </body>
-</html>
+              </html>
