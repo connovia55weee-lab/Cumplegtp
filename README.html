@@ -856,8 +856,14 @@ footer{
 <!-- CONFETI -->
 <div class="confetti" id="confetti"></div>
 
+<!-- AUDIO ELEMENTO -->
+<audio id="backgroundMusic" loop preload="auto">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+Tu navegador no soporta el elemento de audio.
+</audio>
+
 <!-- BOTÓN MÚSICA -->
-<button class="music-toggle" id="musicToggle" title="Activar/Desactivar música">
+<button class="music-toggle playing" id="musicToggle" title="Activar/Desactivar música">
 🎵
 </button>
 
@@ -1000,69 +1006,15 @@ Calle Capricornio N° 23
 
 <div class="card">
 
-<h3>📱 Contacto</h3>
+<h3>👗 Código de Dress</h3>
 
 <p>
 
-Confirmar asistencia al:
+Formal Elegante
 
 <br><br>
 
-<span class="highlight">
-2215720121
-</span>
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- REGALOS -->
-
-<section class="section container">
-
-<h2 class="section-title">
-Sugerencia de Obsequios
-</h2>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>👗 Para Scarlett</h3>
-
-<p>
-
-Si tu obsequio es ropa para el bautizo,
-agradeceríamos que sea talla:
-
-<br><br>
-
-<span class="highlight">
-9 meses a 1 año
-</span>
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>👦 Para Neythan</h3>
-
-<p>
-
-Si tu obsequio es ropa para el cumpleaños,
-agradeceríamos que sea talla:
-
-<br><br>
-
-<span class="highlight">
-4 a 5 años
-</span>
+Colores: Dorado, Rosa y Blanco
 
 </p>
 
@@ -1076,32 +1028,29 @@ agradeceríamos que sea talla:
 
 <section class="section container">
 
-<h2 class="section-title">
-Cuenta Regresiva
-</h2>
+<h2 class="section-title">Cuenta Regresiva</h2>
+
+<p class="section-subtitle">
+¿Cuánto falta para la celebración?
+</p>
 
 <div class="countdown">
-
 <div class="count-box">
-<span id="days">00</span>
+<span id="days">0</span>
 <small>Días</small>
 </div>
-
 <div class="count-box">
-<span id="hours">00</span>
+<span id="hours">0</span>
 <small>Horas</small>
 </div>
-
 <div class="count-box">
-<span id="minutes">00</span>
+<span id="minutes">0</span>
 <small>Minutos</small>
 </div>
-
 <div class="count-box">
-<span id="seconds">00</span>
+<span id="seconds">0</span>
 <small>Segundos</small>
 </div>
-
 </div>
 
 </section>
@@ -1110,36 +1059,32 @@ Cuenta Regresiva
 
 <section class="section container">
 
-<div class="rsvp">
-
-<h2 class="section-title">
-Confirmación de Asistencia
-</h2>
+<h2 class="section-title">Confirma tu Asistencia</h2>
 
 <p class="section-subtitle">
+Por favor confirma tu asistencia antes del 15 de Junio
+</p>
 
-Tu presencia hará este día aún más especial.
-Esperamos compartir contigo este hermoso momento.
+<div class="rsvp">
+
+<p style="margin-bottom:20px; color:#6b6257;">
+
+📞 <span class="highlight">Contacto:</span><br>
+WhatsApp: +595 (código a confirmar)<br>
+Email: invitaciones@evento.com
 
 </p>
 
-<form id="rsvpForm">
-
-<input type="text" placeholder="Nombre completo" required>
-
-<input type="email" placeholder="Correo electrónico" required>
-
-<textarea placeholder="Déjanos un mensaje especial..."></textarea>
-
-<button type="submit">
-✨ Confirmar Asistencia ✨
-</button>
-
+<form>
+<input type="text" placeholder="Tu nombre completo" required>
+<input type="tel" placeholder="Tu teléfono" required>
+<textarea placeholder="¿Tienes alguna pregunta o requerimiento especial?"></textarea>
+<button type="submit">Confirmar Asistencia</button>
 </form>
 
-<div class="fun-note">
-Pdta: "Traer obsequio obligatorio, pedazo eh kk". 😂✨
-</div>
+<p class="fun-note">
+¡Esperamos verte pronto en esta celebración llena de amor y bendiciones! 🎉✨
+</p>
 
 </div>
 
@@ -1149,156 +1094,87 @@ Pdta: "Traer obsequio obligatorio, pedazo eh kk". 😂✨
 
 <footer>
 
-Gracias por ser parte de nuestra historia ❤️
-<br>
-Te esperamos para celebrar juntos este día inolvidable.
+<p>Con amor y bendiciones 💕</p>
+
+<p>Neythan & Scarlett</p>
+
+<p style="margin-top:30px; font-size:0.9rem; opacity:0.8;">
+
+© 2024 - Celebración Especial
+
+</p>
 
 </footer>
 
-<!-- MÚSICA -->
-<audio id="bgMusic" loop>
-<source src="https://cdn.pixabay.com/download/audio/2023/05/08/audio_cfc7f23f9e.mp3?filename=joy-and-celebration-happy-birthday-song-159423.mp3" type="audio/mp3">
-</audio>
-
+<!-- SCRIPT DE MÚSICA Y FUNCIONALIDADES -->
 <script>
 
-/* CONFETI */
+const musicToggle = document.getElementById('musicToggle');
+const backgroundMusic = document.getElementById('backgroundMusic');
 
-function createConfetti(){
-    const confettiContainer = document.getElementById('confetti');
-    const colors = ['#d4af37', '#ff69b4', '#87ceeb', '#90ee90', '#ffa500', '#ff6b6b'];
+// Reproducir música automáticamente con volumen bajo
+window.addEventListener('load', function() {
+    backgroundMusic.volume = 0.3; // Volumen al 30%
+    const playPromise = backgroundMusic.play();
     
-    for(let i = 0; i < 50; i++){
-        const piece = document.createElement('div');
-        piece.className = 'confetti-piece';
-        piece.style.left = Math.random() * 100 + '%';
-        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animation = `confetti-fall ${5 + Math.random() * 4}s linear infinite`;
-        piece.style.animationDelay = Math.random() * 2 + 's';
-        confettiContainer.appendChild(piece);
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            // Autoplay iniciado exitosamente
+            musicToggle.classList.add('playing');
+        }).catch(error => {
+            // Autoplay fue prevenido, mostrar botón para reproducir
+            console.log('Autoplay prevenido:', error);
+        });
+    }
+});
+
+// Toggle de música al hacer clic en el botón
+musicToggle.addEventListener('click', function() {
+    if (backgroundMusic.paused) {
+        backgroundMusic.play();
+        musicToggle.classList.add('playing');
+    } else {
+        backgroundMusic.pause();
+        musicToggle.classList.remove('playing');
+    }
+});
+
+// Cuenta regresiva
+function updateCountdown() {
+    const targetDate = new Date('2024-06-20T11:00:00').getTime();
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / 1000 / 60) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+    }
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// Confeti al cargar
+function createConfetti() {
+    const confettiContainer = document.getElementById('confetti');
+    for (let i = 0; i < 50; i++) {
+        const confettiPiece = document.createElement('div');
+        confettiPiece.className = 'confetti-piece';
+        confettiPiece.style.left = Math.random() * 100 + '%';
+        confettiPiece.style.animationDelay = Math.random() * 0.5 + 's';
+        confettiPiece.style.animationDuration = (Math.random() * 3 + 5) + 's';
+        confettiContainer.appendChild(confettiPiece);
     }
 }
 
 createConfetti();
-
-/* MÚSICA */
-
-const music = document.getElementById("bgMusic");
-const musicToggle = document.getElementById("musicToggle");
-let isPlaying = false;
-
-musicToggle.addEventListener("click", () => {
-    if(isPlaying){
-        music.pause();
-        musicToggle.classList.remove("playing");
-        isPlaying = false;
-    } else {
-        music.play();
-        musicToggle.classList.add("playing");
-        isPlaying = true;
-    }
-});
-
-// Intentar reproducir automáticamente sin sonido
-music.volume = 0.3;
-music.muted = true;
-music.play().catch(() => {
-    console.log("Autoplay bloqueado - usuario debe hacer clic para reproducir");
-});
-
-/* CUENTA REGRESIVA */
-
-const eventDate = new Date("June 20, 2026 11:00:00").getTime();
-
-const countdown = setInterval(() => {
-
-const now = new Date().getTime();
-
-const distance = eventDate - now;
-
-const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-
-const hours = Math.floor(
-(distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-);
-
-const minutes = Math.floor(
-(distance % (1000 * 60 * 60)) / (1000 * 60)
-);
-
-const seconds = Math.floor(
-(distance % (1000 * 60)) / 1000
-);
-
-document.getElementById("days").innerHTML = String(days).padStart(2, '0');
-document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
-document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
-document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
-
-if(distance < 0){
-
-clearInterval(countdown);
-
-document.getElementById("days").innerHTML = "🎉";
-document.getElementById("hours").innerHTML = "¡Ha";
-document.getElementById("minutes").innerHTML = "llegado";
-document.getElementById("seconds").innerHTML = "el día!";
-
-}
-
-}, 1000);
-
-/* CONFIRMACIÓN */
-
-const form = document.getElementById("rsvpForm");
-
-form.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-const button = form.querySelector("button");
-const originalText = button.innerHTML;
-
-button.innerHTML = "🎊 ¡Asistencia Confirmada! 🎊";
-button.disabled = true;
-
-setTimeout(() => {
-    form.reset();
-    button.innerHTML = originalText;
-    button.disabled = false;
-}, 3000);
-
-});
-
-/* ANIMACIÓN SCROLL */
-
-const cards = document.querySelectorAll(".card");
-
-const observer = new IntersectionObserver(entries => {
-
-entries.forEach((entry, index) => {
-
-if(entry.isIntersecting){
-
-entry.target.style.opacity = "1";
-entry.target.style.transform = "translateY(0px)";
-entry.target.style.animationDelay = index * 0.1 + 's';
-
-}
-
-});
-
-}, { threshold:0.1 });
-
-cards.forEach((card, index) => {
-
-card.style.opacity = "0";
-card.style.transform = "translateY(40px)";
-card.style.transition = "0.9s cubic-bezier(0.34, 1.56, 0.64, 1)";
-
-observer.observe(card);
-
-});
 
 </script>
 
